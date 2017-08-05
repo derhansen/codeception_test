@@ -1,0 +1,59 @@
+{
+  "name": "derhansen/codeception_test",
+  "type": "typo3-cms-extension",
+  "description": "Test extension for codeception tests",
+  "homepage": "https://github.com/derhansen/codeception_test",
+  "authors": [
+    {
+      "name": "Torben Hansen",
+      "email": "derhansen@gmail.com",
+      "homepage": "http://www.derhansen.com",
+      "role": "Developer"
+    }
+  ],
+  "keywords": ["TYPO3 CMS", "codeception"],
+  "license": [
+    "GPL-2.0+"
+  ],
+  "require": {
+    "typo3/cms-core": "^7.6 || ^8.5"
+  },
+  "require-dev": {
+    "nimut/testing-framework": "^1.1.5",
+    "codeception/codeception": "^2.3",
+    "helhum/typo3-console": "^4.6"
+  },
+  "replace": {
+    "sf_event_mgt": "self.version",
+    "typo3-ter/sf-event-mgt": "self.version"
+  },
+  "autoload": {
+    "psr-4": {
+      "Derhansen\\CodeceptionTest\\": "Classes"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Derhansen\\CodeceptionTest\\": "Tests"
+    }
+  },
+  "config": {
+    "vendor-dir": ".Build/vendor",
+    "bin-dir": ".Build/bin"
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "mkdir -p .Build/Web/typo3conf/ext/",
+      "[ -L .Build/Web/typo3conf/ext/codeception_test ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/codeception_test"
+    ]
+  },
+  "extra": {
+    "typo3/cms": {
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "web-dir": ".Build/Web"
+    },
+    "helhum/typo3-console": {
+      "install-extension-dummy": "0"
+    }
+  }
+}
